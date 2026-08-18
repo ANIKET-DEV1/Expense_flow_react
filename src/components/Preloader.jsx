@@ -36,6 +36,14 @@ const Preloader = ({ onFinish }) => {
     const totalCycles = 14;
     let delay = 50;
 
+    // Safety fallback timer so screen is never permanently locked
+    const safetyTimer = setTimeout(() => {
+      setStage('exit');
+      setTimeout(() => {
+        if (onFinishRef.current) onFinishRef.current();
+      }, 400);
+    }, 4500);
+
     const cycleNext = () => {
       count++;
       setCurrIndex((prev) => (prev + 1) % (CURRENCIES.length - 1));
@@ -75,6 +83,7 @@ const Preloader = ({ onFinish }) => {
     addTimeout(cycleNext, delay);
 
     return () => {
+      clearTimeout(safetyTimer);
       timerIds.current.forEach((id) => clearTimeout(id));
       timerIds.current = [];
     };
