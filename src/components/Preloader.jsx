@@ -188,25 +188,21 @@ const Preloader = ({ onFinish }) => {
             }}
           >
             {/* Gold Logo Icon Tile */}
-            <div
+            <img
+              src="/logo.png"
+              alt="ExpenseFlow"
+              width={58}
+              height={58}
               style={{
-                width: 58,
-                height: 58,
                 borderRadius: 15,
-                background: 'linear-gradient(145deg, var(--gold) 0%, #9a6e28 100%)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
                 boxShadow:
                   '0 0 0 1px rgba(212,162,76,0.65), 0 10px 30px rgba(212,162,76,0.45), 0 0 50px rgba(212,162,76,0.25)',
-                color: 'var(--gold-ink)',
+                objectFit: 'cover',
                 flexShrink: 0,
                 transform: stage === 'expand_text' ? 'scale(1)' : 'scale(1.06)',
                 transition: 'transform 0.35s ease',
               }}
-            >
-              <LogoIcon size={30} />
-            </div>
+            />
 
             {/* Typography expanding outwards */}
             <div
