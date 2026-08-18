@@ -1,16 +1,35 @@
-import React from 'react'
+import React from 'react';
+import { Menu, X } from 'lucide-react';
+import { useAuth } from '../context/authcontext';
+import { AppLogo } from './Logo';
 
-const Navbar = () => {
+const Navbar = ({ mobileMenuOpen, onToggleMobileMenu }) => {
+  const { user } = useAuth();
+  const initials = user?.username ? user.username.slice(0, 2).toUpperCase() : 'EX';
+
   return (
-    <header id="topnav" className='flex flex-row justify-between items-center p-4 bg-gray-800 text-white'>
-      <button id="menuBtn" type="button" aria-label="Open menu">icon</button>
-      <div>Welcome, AwsmX</div>
-      <div>
-        <button id="themeToggle" type="button">Toggle</button>
-        <span>Secure Node Active</span>
-      </div>
-    </header>
-  )
-}
+    <>
+      {/* Left: Mobile hamburger + Logo */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <button
+          type="button"
+          className="menu-btn"
+          onClick={onToggleMobileMenu}
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
 
-export default Navbar
+        <AppLogo size={32} iconSize={17} />
+      </div>
+
+      {/* Right side */}
+      <div className="topnav-right">
+        <div className="status-pill">Secure Node Active</div>
+        <div className="profile-btn">{initials}</div>
+      </div>
+    </>
+  );
+};
+
+export default Navbar;

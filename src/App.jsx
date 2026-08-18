@@ -12,6 +12,9 @@ import { AuthProvider } from './context/authcontext';
 import Register from './pages/auth/register';
 import Forget_password from './pages/auth/forget_password';
 import Resetpassword from './pages/auth/reset-password';
+import VerifyEmail from './pages/auth/verify-email';
+import NotFound from './pages/error/NotFound';
+import ServerError from './pages/error/ServerError';
 import ProtectedRoutes from './components/routes/ProtectedRoutes';
 import PublicRoutes from './components/routes/PublicRoutes';
 
@@ -27,6 +30,7 @@ const App = () => {
                 <Route path="/register" element={<Register />} />
                 <Route path="/forgot-password" element={<Forget_password />} />
                 <Route path="/reset-password" element={<Resetpassword/>} />
+                <Route path="/verify-email" element={<VerifyEmail />} />
           </Route>  
 
         <Route element={<ProtectedRoutes />}>
@@ -39,7 +43,8 @@ const App = () => {
             </Route>
         </Route>
 
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="/500" element={<ServerError />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
     </AuthProvider>

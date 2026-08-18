@@ -11,8 +11,8 @@ export const AuthProvider = ({ children }) => {
     const initializeAuth = async () => {
       try {
         const data = await authService.getMe();
-        if (data?.authenticated) {
-          setUser(data.user);
+        if (data?.authenticated !== false && (data?.user || data?.username || data?.id || data?.authenticated)) {
+          setUser(data.user || data);
         } else {
           setUser(null);
         }
@@ -28,8 +28,12 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (credentials) => {
     await authService.login(credentials);
-    const data = await authService.getMe();
-    setUser(data.user);
+    try {
+      const data = await authService.getMe();
+      setUser(data.user || data);
+    } catch {
+      setUser({ username: credentials.username });
+    }
   };
 
   const logout = async () => {
