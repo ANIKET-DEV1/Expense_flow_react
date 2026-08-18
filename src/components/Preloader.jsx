@@ -189,7 +189,7 @@ const Preloader = ({ onFinish }) => {
           >
             {/* Gold Logo Icon Tile */}
             <img
-              src="/logo.png"
+              src="/logo.svg"
               alt="ExpenseFlow"
               width={58}
               height={58}

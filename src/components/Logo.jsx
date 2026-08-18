@@ -2,7 +2,7 @@ import React from 'react';
 
 export const LogoIcon = ({ size = 20, className = "" }) => (
   <img
-    src="/logo.png"
+    src="/logo.svg"
     alt="ExpenseFlow Logo"
     width={size}
     height={size}
@@ -22,7 +22,7 @@ export const AppLogo = ({ size = 32, iconSize = 32, showText = true, className =
     style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', color: 'inherit', ...style }}
   >
     <img
-      src="/logo.png"
+      src="/logo.svg"
       alt="ExpenseFlow"
       width={size}
       height={size}
